@@ -20,13 +20,21 @@ export default {
     return {
       posts: '',
       categories: '',
-      tags: ''
+      tags: '',
+      tags0: '',
+      tags100: '',
+      tags200: '',
+      tags300: ''
     }
   },
   created () {
     this.getPosts()
   },
   beforeUpdate () {
+    this.tags = this.tags0.concat(this.tags100, this.tags200, this.tags300)
+    // console.log(this.tags)
+  },
+  updated () {
     function setPostsCategories (posts, categories, tags) {
       posts.forEach(function (eachPost) {
         // CATEGORIES ***********************
@@ -41,22 +49,31 @@ export default {
           }).name)
         })
         eachPost.categories = updatetCategories
-        // // TAGS **********************
-        // // creates an empty array where the updated categories is stored
-        // var updatetTags = []
-        // // looping through categories of each post in posts
-        // eachPost.tags.forEach(function (tagsID) {
-        //   // pushing the name of the matching ids into the empty array
-        //   updatetTags.push(tags.find(function (a) {
-        //     // finds the matching ids of post id and categories id
-        //     return a.id === tagsID
-        //   }).name)
-        // })
-        // eachPost.tags = updatetTags
+        // TAGS **********************
+        // creates an empty array where the updated categories is stored
+        var updatetTags = []
+        // looping through categories of each post in posts
+        eachPost.tags.forEach(function (tagsID) {
+          // pushing the name of the matching ids into the empty array
+          updatetTags.push(tags.find(function (b) {
+            // finds the matching ids of post id and categories id
+            return b.id === tagsID
+          }).name)
+        })
+        eachPost.tags = updatetTags
       })
       return posts
     }
-    setPostsCategories(this.posts, this.categories, this.tags)
+
+    var _this = this
+    setTimeout(function () {
+      setPostsCategories(_this.posts, _this.categories, _this.tags)
+    }, 0)
+
+    // var _this = this
+    // setTimeout(function () {
+    //   console.log(_this.tags[290])
+    // }, 3000)
   },
   methods: {
     getPosts: function () {
@@ -71,13 +88,31 @@ export default {
           _this.categories = response.data
         })
 
-      axios.get('http://wp.christofferbogsti.com/wp-json/wp/v2/tags?per_page=100')
+      axios.get('http://wp.christofferbogsti.com/wp-json/wp/v2/tags?per_page=100&orderby=id')
         .then(function (response) {
           // console.log(response.data)
-          _this.tags = response.data
+          _this.tags0 = response.data
         })
 
-      axios.get('http://wp.christofferbogsti.com/wp-json/wp/v2/posts?per_page=5')
+      axios.get('http://wp.christofferbogsti.com/wp-json/wp/v2/tags?per_page=100&orderby=id&offset=100')
+        .then(function (response) {
+          // console.log(response.data)
+          _this.tags100 = response.data
+        })
+
+      axios.get('http://wp.christofferbogsti.com/wp-json/wp/v2/tags?per_page=100&orderby=id&offset=200')
+        .then(function (response) {
+          // console.log(response.data)
+          _this.tags200 = response.data
+        })
+
+      axios.get('http://wp.christofferbogsti.com/wp-json/wp/v2/tags?per_page=100&orderby=id&offset=300')
+        .then(function (response) {
+          // console.log(response.data)
+          _this.tags300 = response.data
+        })
+
+      axios.get('http://wp.christofferbogsti.com/wp-json/wp/v2/posts?per_page=40')
         .then(function (response) {
         // console.log(response.data)
           _this.posts = response.data
