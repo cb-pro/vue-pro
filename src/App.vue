@@ -1,5 +1,8 @@
 <template lang="html">
-  <router-view></router-view>
+  <div class="app">
+    <compNav></compNav>
+    <router-view></router-view>
+  </div>
 </template>
 
 <script>
@@ -8,4 +11,7 @@ export default {
 </script>
 
 <style lang="sass">
+  body
+    width: 100%
+    margin: 0
 </style>

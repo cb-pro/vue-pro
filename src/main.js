@@ -3,6 +3,14 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import components from './components'
+import VueAgile from 'vue-agile'
+
+Object.entries(components).forEach(function ([key, value]) {
+  Vue.component(key, value)
+})
+
+Vue.use(VueAgile)
 
 Vue.config.productionTip = false
 
