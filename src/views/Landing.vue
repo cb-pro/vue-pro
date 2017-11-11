@@ -40,6 +40,7 @@ export default {
         // CATEGORIES ***********************
         // creates an empty array where the updated categories is stored
         var updatetCategories = []
+
         // looping through categories of each post in posts
         eachPost.categories.forEach(function (categoriesID) {
           // pushing the name of the matching ids into the empty array
@@ -49,14 +50,12 @@ export default {
           }).name)
         })
         eachPost.categories = updatetCategories
+
         // TAGS **********************
-        // creates an empty array where the updated categories is stored
         var updatetTags = []
-        // looping through categories of each post in posts
+
         eachPost.tags.forEach(function (tagsID) {
-          // pushing the name of the matching ids into the empty array
           updatetTags.push(tags.find(function (b) {
-            // finds the matching ids of post id and categories id
             return b.id === tagsID
           }).name)
         })
