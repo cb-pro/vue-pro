@@ -1,5 +1,6 @@
 <template lang="html">
   <div class="landing">
+    <router-link to="/post/black">black</router-link>
     <div v-for="post in posts">
       <h2>{{ post.title.rendered }}</h2>
       <p>Categories:</p>
@@ -111,7 +112,7 @@ export default {
           _this.tags300 = response.data
         })
 
-      axios.get('http://wp.christofferbogsti.com/wp-json/wp/v2/posts?per_page=40')
+      axios.get('http://wp.christofferbogsti.com/wp-json/wp/v2/posts?per_page=4')
         .then(function (response) {
         // console.log(response.data)
           _this.posts = response.data

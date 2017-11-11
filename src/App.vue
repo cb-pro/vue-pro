@@ -4,6 +4,13 @@
 
 <script>
 export default {
+  data () {
+    return {
+    }
+  },
+  created () {
+    alert('If you see mee again, check your goddamn code')
+  }
 }
 </script>
 
