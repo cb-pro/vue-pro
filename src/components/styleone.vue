@@ -1,24 +1,20 @@
 <template lang="html">
   <div>
-    <h1>{{ content.title }}</h1>
-    <p>{{ content.ingress }}</p>
-    <p>{{ content.bodyTxt }}</p>
-    <p>{{ content.endTxt }}</p>
-    <p>{{ content.contact }}</p>
-    <p>{{ content.adress }}</p>
+    <h1>{{ posts.title }}</h1>
+    <div v-html="posts.content"></div>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['content']
+  props: ['posts']
 }
 </script>
 
 <style lang="sass" scoped>
   // PRIMARY FONT
-  h1,h2,h3,h4,h5,h6,p
-    font-family: sans-serif
+  h1,h2,h3,h4,h5,h6,p,div
+    font-family: helvetica, sans-serif
 
   p
     font-size: 1rem

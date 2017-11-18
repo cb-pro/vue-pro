@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Landing from '@/views/Landing'
+import Home from '@/views/Home'
 import About from '@/views/About'
 import Portfolio from '@/views/Portfolio'
 
@@ -11,16 +11,16 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Landing',
-      component: Landing
+      name: 'home',
+      component: Home
     },
     {
-      path: '/About',
+      path: '/about',
       name: 'About',
       component: About
     },
     {
-      path: '/Portfolio',
+      path: '/portfolio',
       name: 'Portfolio',
       component: Portfolio
     }
