@@ -24,9 +24,6 @@ export default {
       }
     }
   },
-  created () {
-    // console.log(this.content.styles)
-  },
   methods: {
     // when logo button is clicked
     // nextStyle: function () {
